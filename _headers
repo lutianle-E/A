@@ -1,0 +1,31 @@
+# Cloudflare Pages Headers — Caching Strategy
+# HTML: 不缓存，确保用户总是获取最新版本
+/*.html
+  Cache-Control: no-cache, must-revalidate
+  X-Content-Type-Options: nosniff
+
+# JS/CSS: 长缓存（文件名有hash，内容变化hash就变）
+/assets/*.js
+  Cache-Control: public, max-age=31536000, immutable
+/assets/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+# 图片: 长缓存
+/images/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+/images/*.png
+  Cache-Control: public, max-age=31536000, immutable
+/images/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+# 视频: 中等缓存
+/video/*
+  Cache-Control: public, max-age=604800
+
+# 字体
+/assets/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+# 3D模型
+/models/*
+  Cache-Control: public, max-age=604800
